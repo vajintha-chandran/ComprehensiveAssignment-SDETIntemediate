@@ -1,0 +1,1320 @@
+{
+	"info": {
+		"_postman_id": "df0d1e24-a811-4d00-84b1-55f30164a3b0",
+		"name": "Question 6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "11878281"
+	},
+	"item": [
+		{
+			"name": "API",
+			"item": [
+				{
+					"name": "API",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Positive TCs",
+			"item": [
+				{
+					"name": "Valid Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that 'token' is a string\", () => {\r",
+									"    pm.expect(responseJson.token).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that token value is correct\", function () {\r",
+									"    pm.expect(responseJson.token).to.eql(\"QpwL5tke4Pnpja7X4\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text",
+								"equals": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Valid Login | HTTP instad of HTTPS",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : OK\", () => {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that 'token' is a string\", () => {\r",
+									"    pm.expect(responseJson.token).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that token value is correct\", function () {\r",
+									"    pm.expect(responseJson.token).to.eql(\"QpwL5tke4Pnpja7X4\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text",
+								"equals": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://reqres.in/api/login",
+							"protocol": "http",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Negative TCs",
+			"item": [
+				{
+					"name": "Invalid | Valid User Name | Missing Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"EVE.HOLT@REQRES.IN\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Valid User Name | Password =NULL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error messag' is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error messag is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing password\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Valid User Name | Password =Empty String",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error messag is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error messag is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing password\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Valid User Name |  Wrong Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Wrong password\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"abc\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Missing User Name | Valid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"password\": \"password@123\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | User Name=NULL | Valid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": null,\r\n  \"password\": \"password@123\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | User Name=Empty String| Valid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"EVE.HOLT@REQRES.IN\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Wrong User Name | Valid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"abc@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | User Name=Empty String | Password=Empty String",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing email or username\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"password\": \"\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Username in UPPER case | Valid Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Bad Request\", () => {\r",
+									"  pm.response.to.have.status(\"Bad Request\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"user not found\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"EVE.HOLT@REQRES.IN\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | GET instead of POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code 405: \", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Method Not Allowed\", () => {\r",
+									"  pm.response.to.have.status(\"Method Not Allowed\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Method GET not allowed for'https://reqres.in/api/login'\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}"
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | PUT instead of POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Method Not Allowed\", () => {\r",
+									"  pm.response.to.have.status(\"Method Not Allowed\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Method PUT not allowed for'https://reqres.in/api/login'\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | DELETE instead of POST",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : 405\", function () {\r",
+									"    pm.response.to.have.status(405);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Method Not Allowed\", () => {\r",
+									"  pm.response.to.have.status(\"Method Not Allowed\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Method DELETE not allowed for'https://reqres.in/api/login'\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "reqres-free-v1",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid | Without Header",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"///////////////////  Verify response code and header   ///////////////////\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code : \", function () {\r",
+									"    pm.response.to.have.status(401);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response Status code name : Unauthorized\", () => {\r",
+									"  pm.response.to.have.status(\"Unauthorized\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Content-Type header : application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json; charset=utf-8');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying Response time is less than 2s\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"///////////////////  Verify response body   ///////////////////\r",
+									"\r",
+									"const responseJson = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Verifying that response is a JSON object\", () => {\r",
+									"    pm.expect(responseJson).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is a string\", () => {\r",
+									"    pm.expect(responseJson.error).to.be.a(\"string\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verifying that error message is correct\", function () {\r",
+									"    pm.expect(responseJson.error).to.eql(\"Missing API key.\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"eve.holt@reqres.in\",\r\n  \"password\": \"password@123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://reqres.in/api/login",
+							"protocol": "https",
+							"host": [
+								"reqres",
+								"in"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
